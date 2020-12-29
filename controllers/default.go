@@ -18,12 +18,18 @@ func (c *MainController) Get() {
 
 func (c *MainController) SimplePaginate() {
 
+	var err error
+
 	columns := make(map[int]SSP.Data)
 	columns[0] = SSP.Data{Db: "id", Dt: "id", Formatter: nil}
 	columns[1] = SSP.Data{Db: "name", Dt: "name", Formatter: nil}
 	columns[2] = SSP.Data{Db: "email", Dt: "email", Formatter: nil}
 	columns[3] = SSP.Data{Db: "age", Dt: "age", Formatter: nil}
 
-	c.Data["json"] = SSP.Simple(c, models.Conn, "users", columns)
+	c.Data["json"], err = SSP.Simple(c, models.Conn, "users", columns)
+	if err != nil {
+		beego.Info(err)
+	}
+
 	c.ServeJSON()
 }

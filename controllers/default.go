@@ -5,7 +5,7 @@ import (
 
 	"GormSSP_Example/models"
 
-	SSP "github.com/juaismar/gormssp"
+	SSP "github.com/juaismar/gormssp/v2"
 )
 
 type MainController struct {
